@@ -1,0 +1,93 @@
+* {
+	padding: 0px;
+	font-family: Arial;
+}
+
+body {
+  background-image: url('../images/stripes.png');
+}
+
+div#container {
+  width: 800px;
+	margin: auto;
+	background-color: #fff;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border: 2px solid #000;
+}
+
+div#content {
+  padding: 20px;
+}
+
+table {
+  border: 0px;
+  font-size: 12px;
+	font-family: Verdana;
+
+}
+
+td {
+  padding: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+div#nav {
+	width: 800px;
+	height: 50px;
+  margin: auto;
+	background-color: #ccc;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border: 2px solid #000;
+}
+
+div#nav_content {
+	padding: 15px;
+}
+
+.nav_button {
+  padding: 5px;
+  -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #999;
+}
+
+img.thumbnail {
+  height: 120px;
+  width: 150px;	
+}
+
+span.item_title {
+  font-weight: bold;
+	font-size: 20px;
+}
+
+input {
+  padding: 5px;	
+}
+
+
+div#search_bar {
+  position: relative;
+  top: -20px;
+  float:right;
+}
+
+a, a:hover {
+  text-decoration: none;
+	font-weight: bold;
+	color: #000;
+}
