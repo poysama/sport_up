@@ -16,7 +16,7 @@
 
   // delete
   if(isset($_POST['delete'])) {
-    $db->deleteCustomer($_POST['cust_id']);
+    $db->deleteCustomer($_POST['delete']);
   }
 
   // update
@@ -94,7 +94,12 @@
           <td><input type=hidden value=$customer_id name=cust_id></td>
         </tr>
       </table>
-      </form></center>";
+      </form>
+      <form action=customers.php action=post>
+        <input type=hidden name=delete value=$customer_id>
+        <input type=submit value=Delete>
+      </form>
+      </center>";
   }
 ?>
   </div>

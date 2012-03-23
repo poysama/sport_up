@@ -2,31 +2,30 @@
   //get class into the page
   require_once('classes/tc_calendar.php');
 
-  $date3_default = date("Y-m-d H:i:s");
-  $date4_default = date("Y-m-d H:i:s");
+  $date1_default = date("Y-m-d H:i:s");
+  $date2_default = date("Y-m-d H:i:s");
 
-  echo "<input type=checkbox name=from_date>From";
-  $myCalendar = new tc_calendar("date3", true, false);
+  $myCalendar = new tc_calendar("date1", true, true);
   $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-  $myCalendar->setDate(date('d', strtotime($date3_default))
-          , date('m', strtotime($date3_default))
-          , date('Y', strtotime($date3_default)));
+  $myCalendar->setDate(date('d', strtotime($date1_default))
+          , date('m', strtotime($date1_default))
+          , date('Y', strtotime($date1_default)));
   $myCalendar->setPath("calendar/");
   $myCalendar->setYearInterval(1970, 2020);
   $myCalendar->setAlignment('left', 'bottom');
-  $myCalendar->setDatePair('date3', 'date4', $date4_default);
+  $myCalendar->setDatePair('date1', 'date2', $date2_default);
+  echo "<b><div style='position: relative; float: left;'><input type=checkbox name=date_from_check>From or Date:&nbsp;</div></b>";
   $myCalendar->writeScript();
-  echo "<br>";
 
-  echo "<input type=checkbox name=to_date>To";
-  $myCalendar = new tc_calendar("date4", true, false);
+  $myCalendar = new tc_calendar("date2", true, true);
   $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-  $myCalendar->setDate(date('d', strtotime($date4_default))
-         , date('m', strtotime($date4_default))
-         , date('Y', strtotime($date4_default)));
+  $myCalendar->setDate(date('d', strtotime($date2_default))
+         , date('m', strtotime($date2_default))
+         , date('Y', strtotime($date2_default)));
   $myCalendar->setPath("calendar/");
   $myCalendar->setYearInterval(1970, 2020);
   $myCalendar->setAlignment('left', 'bottom');
-  $myCalendar->setDatePair('date3', 'date4', $date3_default);
+  $myCalendar->setDatePair('date1', 'date2', $date1_default);
+  echo "<b><div style='position: relative; float: left;'><input type=checkbox name=date_to_check>To:&nbsp;</div></b>";
   $myCalendar->writeScript();
 ?>

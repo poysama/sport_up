@@ -6,6 +6,7 @@ class DB {
   public $customers;
   public $customer;
   public $transactions;
+  public $discount;
 
   public function __construct() {
     $this->dbConnect();
@@ -81,6 +82,14 @@ class DB {
     mysql_query($insert_str);
   }
 
+  public function deleteItem($item_id) {
+    $delete_str = "DELETE FROM items WHERE id = $item_id;";
+
+    mysql_query($delete_str);
+  }
+
+
+
   public function getCustomers() {
     $this->customers = mysql_query("SELECT * FROM customers;", $this->link);
   }
@@ -110,8 +119,8 @@ class DB {
 
   }
 
-  public function deleteCostumer($cust_id) {
-    $delete_str = "DELETE FROM customer WHERE id = $cust_id;";
+  public function deleteCustomer($cust_id) {
+    $delete_str = "DELETE FROM customers WHERE id = $cust_id;";
 
     mysql_query($delete_str);
   }
@@ -119,6 +128,25 @@ class DB {
   public function getTransactions() {
     $this->transactions = mysql_query("SELECT * FROM transactions ORDER BY date_purchased DESC");
   }
+
+  public function filterTransactionsByCustomer($customer_id) {
+    $select_str = "SELECT * FROM transactions WHERE customer_id = $customer_id";
+
+    $this->transactions = mysql_query($select_str);
+  }
+
+  public function filterTransactionsByDate($date) {
+    $select_str = "SELECT * FROM transactions WHERE date_purchased LIKE '$date%'";
+
+    $this->transactions = mysql_query($select_str);
+  }
+
+  public function filterTransactionsByDateRange($date1, $date2) {
+    $select_str = "SELECT * FROM transactions WHERE DATE(date_purchased) BETWEEN '$date1' AND '$date2'";
+
+    $this->transactions = mysql_query($select_str);
+  }
+
 
   public function insertTransaction($values) {
     $id = $values['id'];
@@ -155,6 +183,24 @@ class DB {
                     );";
 
     mysql_query($insert_query);
+  }
+
+  public function getDiscount() {
+    $sql = "SELECT * FROM settings"; 
+
+    $this->discount = mysql_query($sql);
+  }
+
+  public function insertDiscount($dc) {
+    $sql = "INSERT INTO `$this->db_name`.`settings` (`discount`) VALUES ($dc);";
+
+    mysql_query($sql);
+  }
+
+  public function updateDiscount($dc) {
+    $sql = "UPDATE settings SET discount = $dc";
+
+    mysql_query($sql);
   }
 
   public function dbDisconnect() {

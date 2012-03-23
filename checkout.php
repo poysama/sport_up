@@ -77,18 +77,7 @@
 
     echo "<p>Cart Total: Php $cart_total </p>";
     echo "<input type=hidden name=cart_total value=$cart_total>";
-
-    echo "<p>
-            Apply Discount:
-            <select name=discount>
-              <option>0</option>
-              <option>20</option>
-              <option>30</option>
-              <option>50</option>
-              <option>75</option>
-            </select>%
-            <input type=submit value=Checkout>
-          </p>";
+    echo "<input type=submit value=Checkout>";
   }
 ?>
      </form>
