@@ -12,11 +12,13 @@
 <body>
 <div id="main">
   <!-- header -->
-	<div id="nav">
-	  <div id="nav_content">
-		  <a href="index.php" class="nav_button">Home</a>
-			<a href="cart.php" class="nav_button">Cart</a>
-			<a href="transaction.php" class="nav_button">Transactions</a>
-		</div>
-	</div>
+ <div id="nav">
+   <div id="nav_content">
+     <a href="index.php" class="nav_button">Home</a>
+     <a href="cart.php" class="nav_button">Cart</a>
+     <a href="transaction.php" class="nav_button">Transactions</a>
+     <a href="login.php?last_page=customers" class="nav_button">Customers</a>
+     <a href="login.php?last_page=items" class="nav_button">Items</a>
+  </div>
+ </div>
 

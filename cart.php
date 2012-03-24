@@ -28,8 +28,8 @@
    if(isset($_POST['id']) and isset($_POST['quantity']) and isset($_POST['price'])) {
     if(!array_key_exists($_POST['id'], $_SESSION['cart'])) {
      $_SESSION['cart'][$_POST['id']] = array('quantity' => $_POST['quantity'], 'price' => $_POST['price']);
-		 
-		 $_SESSION['cart'][$_POST['id']]['item_name'] = $_POST['item_name'];
+
+   $_SESSION['cart'][$_POST['id']]['item_name'] = $_POST['item_name'];
      echo "Added item with id " . $_POST['id'] . "<br>";
     }
     else {
@@ -44,9 +44,10 @@
      }
 
       $_SESSION['cart'][$_POST['id']]['price'] = $_POST['price'];
-	
-			$_SESSION['cart'][$_POST['id']]['item_name'] = $_POST['item_name'];
-    }
+
+     $_SESSION['cart'][$_POST['id']]['item_name'] = $_POST['item_name'];
+
+     }
    }
 
    if(!empty($_SESSION['cart'])) {
@@ -81,13 +82,13 @@
      echo "</table>";
 
     }
-		echo "<p>Cart Total: Php $cart_total </p>";
+  echo "<p>Cart Total: Php $cart_total </p>";
    }
 
   ?>
-	<p>
-		<a href="?empty_cart=true">Empty Your Cart</a>
-	</p>
+ <p>
+  <a href="?empty_cart=true">Empty Your Cart</a>
+ </p>
   <p>
    <a href="checkout.php">Checkout!</a>
   </p>
