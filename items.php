@@ -1,5 +1,6 @@
 <?php 
   include('header.php');
+  include('db.php');
 
   if(!isset($_SESSION['logged_in'])) {
     header("Location: login.php?last_page=items");
@@ -8,34 +9,43 @@
 
 <div id="container">
   <div id="content">
-  <h2>Items</h2>
+  <h2>Customers</h2>
 
 <?php
+  $db = new DB();
+  $db->getItems();
+  $items = $db->items;
 
-  $_SESSION['last_page'] = $_GET['last_page'];
+  echo "<form action=items.php method=post>";
+  echo "Customers: <select name='items'>";
 
-  if(isset($_POST['username']) and isset($_POST['password'])) {
-    $username = 'admin';
-    $password = 'admin';
+  while($row = mysql_fetch_array($items)) {
+    $item = $row['name'];
+    $item_id = $row['id'];
 
-    if($username == $_POST['username'] and $password == $_POST['password']) {
-      $last_page = $_SESSION['last_page'];
-
-      header("Location: $last_page.php");
-      $_SESSION['logged_in'] = true;
-    } else {
-      $_SESSION['flash'] = "Wrong username or password! Please try again.";
-    }
+    echo "<option value=$item_id>$item</option>";
   }
 
-  if(isset($_SESSION['logged_in'])) {
-    if(isset($_SESSION['flash'])) {
-      echo "<center>";
-      echo $_SESSION['flash'];
-      unset($_SESSION['flash']);
-      echo "</center>";
-    }
-  }
+  echo "</select><br>";
+  echo "<input type=submit value=Edit>";
+  echo "<input type=submit value=Delete>";
+  echo "</form>"
 ?>
+  <h2>Add an item</h2>
+  <form action="items.php" method="post">
+    <table>
+      <tr>
+        <td>Last Name</td>
+        <td><input type="text" name="last_name"></td>
+      </tr>
+      <tr>
+        <td>First Name</td>
+        <td><input type="text" name="last_name"></td>
+      </tr>
+      <tr>
+        <td colspan=2><input type=submit value="Add"></td>
+      </tr>
+    </table>
+  </form>
   </div>
 </div>
