@@ -14,7 +14,6 @@
   $db = new DB();
   $customers = $db->customers;
 
-  echo "HAHA";
   echo "<select name='customers'>";
 
   while($row = mysql_fetch_array($customers)) {

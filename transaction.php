@@ -1,18 +1,25 @@
-<?php include('header.php') ?>
-<?php include('db.php') ?>
+<?php
+  include('header.php');
+  include('db.php');
+
+  if(!isset($_SESSION['logged_in'])) {
+    header("Location: login.php?last_page=customers");
+  }
+
+?>
 
 <!-- content -->
 <div id="container">
   <div id="content">
 		<h2>Transactions</h2>
-		
+
     <table>
 
 <?php
   $db = new DB();
 	$db->getItems();
 	$db->getTransactions();
-	
+
 	echo "<table border=1 cellpadding=10>
 			<tr>
 				<th>Transaction ID</th>
@@ -24,7 +31,7 @@
 				<th>Date Purchased</th>
 				<td>Payment</td>
 			</tr>";
-			
+
 	while($row = mysql_fetch_array($db->transactions)) {
 		$id = $row['id'];
 		$customer_id = $row['customer_id'];
@@ -34,7 +41,7 @@
 		$total_price = $row['total_price'];
 		$date_purchased = $row['date_purchased'];
 		$payment_type = $row['payment_type'];
-		
+
 		echo "<tr>
 					<td>$id</td>
 					<td>$customer_id</td>

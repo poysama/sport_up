@@ -9,37 +9,37 @@
     <form action=receipt.php method=post>
 <?php
   echo "<h2>Confirm your order</h2>";
-	
+
 	$db = new DB();
 	$db->getCustomers();
 	$customers = array();
-	
+
 	while($row = mysql_fetch_array($db->customers)) {
 		$customer = array();
-		
+
 		$customer['id'] = $row['id'];
 		$customer['last_name'] = $row['last_name'];
 		$customer['first_name'] = $row['first_name'];
-	
+
 		array_push($customers, $customer);
-		
+
 	}
-	
+
 	echo "Customer: <select name=customer>";
-	
+
 	foreach($customers as $c => $d) {
 		$id = $d['id'];
-		
+
 		echo "<option value=$id>" . $d['last_name'] . ", " . $d['first_name'] . "</option>";
 	}
-	
+
 	echo "</select>";
-	
+
 	echo "<p>Payment Type<br>
 	      <img src=images/credit.gif><br>
-				<input type=radio name=payment value=Card>Card<br>
-				<input type=radio name=payment value=Cash checked=yes>Cash</p>";
-	
+				<input type=radio name=payment value=Card>
+        Card Number: <input type=text name=card_number><br>";
+
   if(!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
   }
@@ -48,7 +48,7 @@
     $db = new DB();
     $cart_total = 0;
 		echo "<h2>Items</h2>";
-		
+
     foreach($_SESSION['cart'] as $id => $value) {
       $db->getItem($id);
 
@@ -80,7 +80,7 @@
 		echo "<input type=hidden name=cart_total value=$cart_total>";
 
     echo "<p>
-						Apply Discount: 
+						Apply Discount:
 						<select name=discount>
 							<option>0</option>
 							<option>20</option>
