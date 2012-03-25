@@ -7,15 +7,12 @@
 
   $last_page = $_GET['last_page'];
 
-  $_SESSION['flash'] = "To access customer list or items list you must login.";
-
   if(isset($_POST['username']) and isset($_POST['password'])) {
     $username = 'admin';
     $password = 'admin';
 
     if($username == $_POST['username'] and $password == $_POST['password']) {
-      // $_SESSION['admin'] = true;
-      include("$last_page" . ".php");
+      header("Location: $last_page.php");
       $_SESSION['logged_in'] = true;
     } else {
       $_SESSION['flash'] = "Wrong username or password! Please try again.";
@@ -23,29 +20,27 @@
 
   }
 
-  if(isset($_SESSION['logged_in'])) {
     if(isset($_SESSION['flash'])) {
       echo "<center>";
       echo $_SESSION['flash'];
       unset($_SESSION['flash']);
       echo "</center>";
-    } 
+    }
 
-    echo "<form action=login.php?last_page=$last_page method=post>
-            <table align=center>
-              <tr>
-                <td>Username:</td>
-                <td><input type=text name=username></td>
-              </tr>
-              <tr>
-                <td>Password:</td>
-                <td><input type=password name=password></td>
-              </tr>
-              <tr>
-                <td colspan=2><input type=submit value=Login></td>
-              </tr>
-          </form>";
-  }
+  echo "<form action=login.php?last_page=$last_page method=post>
+          <table align=center>
+            <tr>
+              <td>Username:</td>
+              <td><input type=text name=username></td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td><input type=password name=password></td>
+            </tr>
+            <tr>
+              <td colspan=2><input type=submit value=Login></td>
+            </tr>
+        </form>";
 ?>
   </div>
 </div>
