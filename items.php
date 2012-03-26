@@ -20,18 +20,36 @@
   }
 
   // update
-  if( isset($_POST['item_name']) and
-      isset($_POST['description']) and
-      isset($_POST['quantity']) and
-      isset($_POST['price']) and
-      isset($_POST['image_url']) ) {
+  if( isset($_POST['item_name']) and !empty($_POST['item_name']) and
+      isset($_POST['description']) and !empty($_POST['description']) and
+      isset($_POST['quantity']) and !empty($_POST['quantity']) and
+      isset($_POST['price']) and !empty($_POST['price']) and
+      isset($_POST['image_url']) and !empty($_POST['image_url']) ) {
 
-    if(isset($_POST['cust_id'])) {
-      $item_name = $_POST['item_name'];
-      $description = $_POST['description'];
+    $item_name = $_POST['item_name'];
+    $description = $_POST['description'];
+    $qty = $_POST['quantity'];
+    $price = $_POST['price'];
+    $image_url = $_POST['image_url'];
 
-      $db->updateitem($cust_id, $last_name, $first_name);
+    $insert_values = array ('item_name' => $item_name,
+                            'description' => $description,
+                            'qty' => $qty,
+                            'price' => $price,
+                            'image_url' => $image_url
+                           );
+
+    if(isset($_POST['item_id'])) {
+      $item_id = $_POST['item_id'];
+
+      $db->updateItem($item_id, $insert_values);
+      echo "Updated $item_name.";
+    } else {
+      $db->insertItem($insert_values);
+      echo "Added $item_name.";
     }
+  } else {
+    echo "Some fields are missing or invalid!";
   }
 
   // get all items for drop down box
@@ -90,13 +108,14 @@
     $quantity = $item['quantity'];
     $price = $item['price'];
     $image_url = $item['image_url'];
+    $item_id = $_GET['items'];
 
-    echo "<center><h2>Add a item</h2>
+    echo "<center><h2>Edit an item</h2>
     <form action=items.php method=post>
       <table>
         <tr>
           <td>Name</td>
-          <td><input type=text name=item_name value=$name></td>
+          <td><input type=text name=item_name value='$name'></td>
         </tr>
         <tr>
           <td>Description</td>
@@ -112,10 +131,11 @@
         </tr>
         <tr>
           <td>Image Url</td>
-          <td><input type=text name=image_url value=$image_url></td>
+          <td><input type=text name=image_url value='$image_url'></td>
         </tr>
         <tr>
-          <td colspan=2><input type=submit value=Update></td>
+          <td><input type=submit value=Update></td>
+          <td><input type=hidden value=$item_id name=item_id></td>
         </tr>
       </table>
       </form></center>";

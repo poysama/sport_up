@@ -40,11 +40,45 @@ class DB {
     $this->item = mysql_query("SELECT * FROM items WHERE id = $item_id");
   }
 
-  public function insertItem() {
+  public function updateItem($item_id, $values) {
+    $item_name = $values['item_name'];
+    $description = $values['description'];
+    $quantity = $values['qty'];
+    $price = $values['price'];
+    $image_url = $values['image_url'];
+
+    $update_str = "UPDATE items SET name = '$item_name',
+                                    description = \"$description\",
+                                    quantity = $quantity,
+                                    price = $price,
+                                    image_url = '$image_url' WHERE id = $item_id;";
+
+    mysql_query($update_str);
   }
 
-  public function updateItem() {
+  public function insertItem($values) {
+    $item_name = $values['item_name'];
+    $description = $values['description'];
+    $quantity = $values['qty'];
+    $price = $values['price'];
+    $image_url = $values['image_url'];
 
+    $insert_str = " INSERT INTO `$this->db_name`.`items` (
+                    `name`,
+                    `description`,
+                    `image_url`,
+                    `price`,
+                    `quantity`
+                    )
+                    VALUES (
+                    '$item_name',
+                    \"$description\",
+                    '$image_url',
+                    '$price',
+                    '$quantity'
+                    );";
+
+    mysql_query($insert_str);
   }
 
   public function getCustomers() {
@@ -70,6 +104,7 @@ class DB {
                     '$ln',
                     '$fn'
                     );";
+
 
     mysql_query($insert_str);
 

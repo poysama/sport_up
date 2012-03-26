@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image: url('../images/stripes.png');
+ /* background-image: url('../images/stripes.png');*/
 }
 
 div#container {
@@ -27,8 +27,7 @@ div#content {
 table {
   border: 0px;
   font-size: 12px;
-	font-family: Verdana;
-
+	font-family: Arial;
 }
 
 td {
@@ -74,8 +73,8 @@ span.item_title {
 	font-size: 20px;
 }
 
-input {
-  padding: 5px;	
+input, select {
+  padding: 5px;
 }
 
 

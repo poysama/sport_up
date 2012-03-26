@@ -24,11 +24,13 @@
     echo '<a href="customers.php" class="nav_button">Customers</a>';
     echo '<a href="items.php" class="nav_button">Items</a>';
     echo '<a href="transaction.php" class="nav_button">Transactions</a>';
+    echo '<a href="settings.php" class="nav_button">Settings</a>';
     echo '<a href="logout.php" class="nav_button">Logout</a>';
   } else {
     echo '<a href="login.php?last_page=customers" class="nav_button">Customers</a>';
     echo '<a href="login.php?last_page=items" class="nav_button">Items</a>';
     echo '<a href="login.php?last_page=transaction" class="nav_button">Transactions</a>';
+    echo '<a href="login.php?last_page=settings" class="nav_button">Settings</a>';
   }
 ?>
   </div>
