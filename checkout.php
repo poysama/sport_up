@@ -10,35 +10,34 @@
 <?php
   echo "<h2>Confirm your order</h2>";
 
-	$db = new DB();
-	$db->getCustomers();
-	$customers = array();
+  $db = new DB();
+  $db->getCustomers();
+  $customers = array();
 
-	while($row = mysql_fetch_array($db->customers)) {
-		$customer = array();
+  while($row = mysql_fetch_array($db->customers)) {
+    $customer = array();
 
-		$customer['id'] = $row['id'];
-		$customer['last_name'] = $row['last_name'];
-		$customer['first_name'] = $row['first_name'];
+    $customer['id'] = $row['id'];
+    $customer['last_name'] = $row['last_name'];
+    $customer['first_name'] = $row['first_name'];
 
-		array_push($customers, $customer);
+    array_push($customers, $customer);
 
-	}
+  }
 
-	echo "Customer: <select name=customer>";
+  echo "Customer: <select name=customer>";
 
-	foreach($customers as $c => $d) {
-		$id = $d['id'];
+  foreach($customers as $c => $d) {
+    $id = $d['id'];
 
-		echo "<option value=$id>" . $d['last_name'] . ", " . $d['first_name'] . "</option>";
-	}
+    echo "<option value=$id>" . $d['last_name'] . ", " . $d['first_name'] . "</option>";
+  }
 
-	echo "</select>";
+  echo "</select>";
 
-	echo "<p>Payment Type<br>
-	      <img src=images/credit.gif><br>
-				<input type=radio name=payment value=Card>
-        Card Number: <input type=text name=card_number><br>";
+  echo "<p>Payment Type(Credit card only)<br>
+        <img src=images/credit.gif><br>
+        Card Number: <input type=text name=payment><br>";
 
   if(!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
@@ -47,7 +46,7 @@
   if(!empty($_SESSION['cart'])) {
     $db = new DB();
     $cart_total = 0;
-		echo "<h2>Items</h2>";
+    echo "<h2>Items</h2>";
 
     foreach($_SESSION['cart'] as $id => $value) {
       $db->getItem($id);
@@ -77,18 +76,18 @@
     }
 
     echo "<p>Cart Total: Php $cart_total </p>";
-		echo "<input type=hidden name=cart_total value=$cart_total>";
+    echo "<input type=hidden name=cart_total value=$cart_total>";
 
     echo "<p>
-						Apply Discount:
-						<select name=discount>
-							<option>0</option>
-							<option>20</option>
-							<option>30</option>
-							<option>50</option>
-							<option>75</option>
-						</select>%
-						<input type=submit value=Checkout>
+            Apply Discount:
+            <select name=discount>
+              <option>0</option>
+              <option>20</option>
+              <option>30</option>
+              <option>50</option>
+              <option>75</option>
+            </select>%
+            <input type=submit value=Checkout>
           </p>";
   }
 ?>
