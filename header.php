@@ -8,6 +8,7 @@
 <title>Sport Up! - Your favorite shoe store</title>
 
 <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="calendar/calendar.js"></script>
 <!--[if lt IE 7]>
    <link href="style_ie.css" rel="stylesheet" type="text/css" />
 <![endif]-->

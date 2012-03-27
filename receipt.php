@@ -70,9 +70,9 @@
    if(isset($_POST['discount'])) {
      $discounted_total = $_POST['cart_total'] - ($_POST['cart_total'] * $_POST['discount']/100);
      echo "<p>Discounted Total: <b>$discounted_total</b></p>";
-    }
+   }
 
-   session_destroy();
+   unset($_SESSION['cart']);
   }
 ?>
   </div>

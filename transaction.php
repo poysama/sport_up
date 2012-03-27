@@ -6,6 +6,10 @@
     header("Location: login.php?last_page=customers");
   }
 
+  echo $_REQUEST['date3'];
+  echo "<br>";
+  echo $_REQUEST['date4'];
+
 ?>
 
 <!-- content -->
@@ -13,16 +17,34 @@
   <div id="content">
     <h2>Transactions</h2>
 
-    <table>
+    <form action=transaction.php method=post>
+      <?php
+        include('calendar/calendar.php');
+      ?>
+      <p>&nbsp;</p>
 
 <?php
   $db = new DB();
   $db->getItems();
   $db->getTransactions();
+  $db->getCustomers();
+
+  echo "Customer:
+          <select name=customers>
+            <option>Select customer</option>";
+        while($row = mysql_fetch_array($db->customers)) {
+          $customer = $row['last_name'] . ", " . $row['first_name'];
+          $id = $row['id'];
+
+          echo "<option value=$id>$customer</option>";
+        }
+
+  echo "</select>";
+  echo "<input type=submit value=Filter>";
+  echo "</form>";
 
   echo "<table border=1 cellpadding=10>
       <tr>
-        <th>Transaction ID</th>
         <th>Customer</th>
         <th>Item</th>
         <th>Discount</th>
@@ -30,7 +52,7 @@
         <th>Total Price</th>
         <th>Quantity</th>
         <th>Date Purchased</th>
-        <td>Payment</td>
+        <td>Card number</td>
       </tr>";
 
   while($row = mysql_fetch_array($db->transactions)) {
@@ -54,7 +76,6 @@
     $payment_type = $row['payment_type'];
 
     echo "<tr>
-          <td>$id</td>
           <td>$customer_name</td>
           <td>$item_name</td>
           <td>$discount</td>

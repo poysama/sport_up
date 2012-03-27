@@ -43,13 +43,11 @@
       $item_id = $_POST['item_id'];
 
       $db->updateItem($item_id, $insert_values);
-      echo "Updated $item_name.";
+      echo "<center>Updated $item_name.</center>";
     } else {
       $db->insertItem($insert_values);
-      echo "Added $item_name.";
+      echo "<center>Added $item_name.</center>";
     }
-  } else {
-    echo "Some fields are missing or invalid!";
   }
 
   // get all items for drop down box
